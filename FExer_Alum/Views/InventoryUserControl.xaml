@@ -1,0 +1,409 @@
+﻿<UserControl x:Class="FINALPROJECT_OOP_ALUM.Views.InventoryUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FINALPROJECT_OOP_ALUM.Views"
+             xmlns:ViewModel="clr-namespace:FINALPROJECT_OOP_ALUM.ViewModels" 
+            xmlns:Font ="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d" 
+             d:DesignHeight="540" 
+             d:DesignWidth="860"
+             Background="White">
+
+    <UserControl.DataContext>
+        <ViewModel:InventoryManagementViewModel/>
+    </UserControl.DataContext>
+
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row ="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0"
+                        Orientation="Horizontal">
+
+                <Border Grid.Column="0"
+                        Height="28"
+                        Width="250"
+                        Background="White"
+                        Margin="30,0,0,0"
+                        BorderBrush="{StaticResource color2}" 
+                        BorderThickness="2">
+
+                    <TextBox Name="FilterTextBox"
+                             TextChanged="FilterTextBox_TextChanged"
+                             Margin="0,0,0,0"
+                             Foreground="{StaticResource color8}"/>
+
+                </Border>
+
+
+                <Border Grid.Column="0"
+                        Height="28"
+                        Background="White"
+                        BorderBrush="{StaticResource color2}" 
+                        BorderThickness="2">
+
+                    <Font:FontAwesome Icon="Search"
+                                      Height="25"
+                                      Width="30"
+                                      FontSize="15"
+                                      Margin="0,1,0,0"
+                                      Foreground="{StaticResource color7}"
+                                      VerticalAlignment="Top"/>
+                </Border>
+
+            </StackPanel>
+
+
+        </Grid>
+
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"/>
+
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="11*"/>
+                <ColumnDefinition Width="45*"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+
+            <ListView Grid.Row="0"
+                      Name="InventoryList"
+                      Padding="15"
+                      Background="Transparent"
+                      BorderBrush="Transparent"
+                      ItemsSource="{Binding Inventory}"
+                      SelectedItem="{Binding SelectedItem}"
+                      Margin="0,5,0,10"
+                      HorizontalContentAlignment="Center" Grid.ColumnSpan="2" 
+                      SelectionChanged="InventoryList_SelectionChanged" >
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{StaticResource color14}"/>
+                                <!-- Set background color for selected item -->
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <ListView.View>
+                    <GridView>
+                        <!-- Header Style -->
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="Background" Value="{StaticResource color13}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+
+                        <!-- Columns -->
+                        <GridViewColumn Header="ID" Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ComponentID}" 
+                                               TextAlignment="Center"
+                                               Foreground="{StaticResource color13}" 
+                                               FontWeight="Bold" 
+                                               FontSize="12"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Name" 
+                                        Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ComponentName}" 
+                                               TextAlignment="Center"
+                                               Foreground="{StaticResource color13}" 
+                                               FontWeight="Bold" 
+                                               FontSize="12"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Category" 
+                                        Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ComponentCategory}" 
+                                               TextAlignment="Center"
+                                               Foreground="{StaticResource color13}" 
+                                               FontWeight="Bold" 
+                                               FontSize="12"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+                        <GridViewColumn Header="Brand" 
+                                        Width="110">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ComponentBrand}" 
+                                               TextAlignment="Center"
+                                               Foreground="{StaticResource color13}" 
+                                               FontWeight="Bold" 
+                                               FontSize="12"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Quantity" 
+                                        Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ComponentQuantity}" 
+                                               TextAlignment="Center"
+                                               Foreground="{StaticResource color13}" 
+                                               FontWeight="Bold" 
+                                               FontSize="12"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+
+                    </GridView>
+
+                </ListView.View>
+
+            </ListView>
+
+
+            <StackPanel Grid.Column="2"
+                        Margin="10,0,0,0">
+
+                <StackPanel.Background>
+                    <LinearGradientBrush StartPoint="0,0" 
+                                         EndPoint="1,0">
+                        <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0.2"/>
+                        <GradientStop Color="{StaticResource secondaryBackColor4}" Offset="0.7"/>
+                        <GradientStop Color="{StaticResource secondaryBackColor2 }" Offset="1"/>
+
+
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+
+                <TextBlock Text="COMPONENT INFORMATION "
+                           Margin="0,10,0,0"
+                           FontSize="13"
+                           FontWeight="ExtraBold"
+                           HorizontalAlignment="Center"
+                           Foreground="{StaticResource color8}"/>
+
+
+                <Border Height="30"
+                        Width="100"
+                        Margin="0,10,0,0"
+                        Background="{StaticResource color13}"
+                        CornerRadius="8"
+                        HorizontalAlignment="Center">
+
+                        <Button Height="20"
+                                Width="105"
+                                Background="Transparent"
+                                Content=" + Add Component "
+                                FontSize="11"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                BorderThickness="0"
+                                Command="{Binding ShowAddInventoryWindowCommand}" 
+                                HorizontalAlignment="Center" />
+
+                </Border>
+
+
+
+                <TextBlock Text="ID"
+                           Margin="50,1,0,0"
+                           FontSize="13"
+                           FontWeight="ExtraBold"
+                           Foreground="{StaticResource color8}"/>
+
+                <TextBox Width="150"
+                         Height="20"
+                         Margin="0,5,0,0"
+                         IsReadOnly="True"
+                         FontSize="12"
+                         FontWeight="Bold"
+                         Foreground="{StaticResource color13}"                        
+                         BorderBrush="{StaticResource color8}"
+                         BorderThickness="2"
+                         Text="{Binding SelectedItem.ComponentID, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Name"
+                           Margin="50,1,0,0"
+                           FontSize="13"
+                           FontWeight="ExtraBold"
+                           Foreground="{StaticResource color8}"/>
+
+                <TextBox Width="150"
+                         Height="20"
+                         Margin="0,5,0,0"
+                         IsReadOnly="True"
+                         FontSize="12"
+                         FontWeight="Bold"
+                         Foreground="{StaticResource color13}"                        
+                         BorderBrush="{StaticResource color8}"
+                         BorderThickness="2"
+                         Text="{Binding SelectedItem.ComponentBrand, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Brand"
+                           Margin="50,5,0,0"
+                           FontSize="13"
+                           FontWeight="ExtraBold"
+                           Foreground="{StaticResource color8}"/>
+
+                <TextBox Width="150"
+                         Height="20"
+                         Margin="0,5,0,0"
+                         IsReadOnly="True"
+                         FontSize="12"
+                         FontWeight="Bold"
+                         Foreground="{StaticResource color13}"                        
+                         BorderBrush="{StaticResource color8}"
+                         BorderThickness="2"
+                         Text="{Binding SelectedItem.ComponentName, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                <TextBlock Text="Model"
+                           Height="20"
+                           Margin="50,5,0,0"
+                           FontSize="13"
+                           FontWeight="ExtraBold"
+                           Foreground="{StaticResource color8}"/>
+
+                <TextBox Width="150"
+                         Margin="0,5,0,0"
+                         IsReadOnly="True"
+                         FontSize="12"
+                         FontWeight="Bold"
+                         Foreground="{StaticResource color13}"                        
+                         BorderBrush="{StaticResource color8}"
+                         BorderThickness="2"
+                         Text="{Binding SelectedItem.ComponentModel, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Price"
+                           Height="20"
+                           Margin="50,5,0,0"
+                           FontSize="13"
+                           FontWeight="ExtraBold"
+                           Foreground="{StaticResource color8}"/>
+
+                <TextBox Width="150"
+                         Margin="0,5,0,0"
+                         IsReadOnly="True"
+                         FontSize="12"
+                         FontWeight="Bold"
+                         Foreground="{StaticResource color13}"                        
+                         BorderBrush="{StaticResource color8}"
+                         BorderThickness="2"
+                         Text="{Binding SelectedItem.ComponentPrice,  UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Quantity"
+                           Height="20"
+                           Margin="50,5,0,0"
+                           FontSize="13"
+                           FontWeight="ExtraBold"
+                           Foreground="{StaticResource color8}"/>
+
+                <TextBox Width="150"
+                         Margin="0,5,0,0"
+                         IsReadOnly="True"
+                         FontSize="12"
+                         FontWeight="Bold"
+                         Foreground="{StaticResource color13}"                        
+                         BorderBrush="{StaticResource color8}"
+                         BorderThickness="2"
+                         Text="{Binding SelectedItem.ComponentQuantity, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Category"
+                           Height="20"
+                           Margin="50,5,0,0"
+                           FontSize="13"
+                           FontWeight="ExtraBold"
+                           Foreground="{StaticResource color8}"/>
+
+                <TextBox Width="150"
+                         Margin="0,5,0,0"
+                         IsReadOnly="True"
+                         FontSize="12"
+                         FontWeight="Bold"
+                         Foreground="{StaticResource color13}"                        
+                         BorderBrush="{StaticResource color8}"
+                         BorderThickness="2"
+                         Text="{Binding SelectedItem.ComponentCategory, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Center">
+
+                    <Border Height="30"
+                            Width="70"
+                            Margin="0,0,0,0"
+                            Background="{StaticResource color13}"
+                            CornerRadius="8">
+
+                        <Button Height="30"
+                                Width="50"
+                                Background="Transparent"
+                                Content="✔ Edit"
+                                FontSize="11"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                BorderThickness="0"
+                                Command="{Binding ShowEditInventoryWindowCommand}"/>
+
+                    </Border>
+
+                    <Border Height="30"
+                            Width="70"
+                            Margin="25,0,0,0"
+                            Background="{StaticResource color13}"
+                            CornerRadius="10">
+
+                        <Button Height="30"
+                                Width="50"
+                                Background="Transparent"
+                                Content="x Delete"
+                                FontSize="11"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                BorderThickness="0"
+                                Command="{Binding DeleteInventoryCommand}"/>
+
+                    </Border>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+
+</UserControl>
+

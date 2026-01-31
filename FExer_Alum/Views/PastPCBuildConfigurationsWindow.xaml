@@ -1,0 +1,292 @@
+﻿<Window x:Class="FINALPROJECT_OOP_ALUM.Views.PastPCBuildConfigurationsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FINALPROJECT_OOP_ALUM.Views"
+        xmlns:Font ="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        Title="PastPCBuildConfigurationsWindow" 
+        Name="PastPCBuild"
+        Height="450" 
+        Width="600"
+        Background="White">
+
+    <Border CornerRadius="30">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="417*"/>
+                <RowDefinition Height="17*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Ellipse Height="513"
+                     VerticalAlignment="Top"
+                     Fill="#5ec"
+                     Margin="-74,89,150,0"
+                     Opacity="0.2" Grid.RowSpan="2"/>
+
+            <Ellipse Width="500"
+                     Height="500"
+                     VerticalAlignment="Top"
+                     Fill="{StaticResource color2}"
+                     Margin="-100,290,200,0"
+                     Opacity="0.4" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+
+            <Ellipse Width="500"
+                     Height="500"
+                     VerticalAlignment="Top"
+                     Fill="#5eccb4"
+                     Margin="0,195,-200,0"
+                     Opacity="0.3" Grid.Column="1" Grid.RowSpan="2"/>
+
+            <Ellipse Height="500"
+                     VerticalAlignment="Top"
+                     Fill="{StaticResource color12}"
+                     Margin="105,138,66,0"
+                     Opacity="0.5" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+
+            <Ellipse Height="513"
+                     VerticalAlignment="Top"
+                     Fill="{StaticResource color8}"
+                     Margin="150,89,-74,0"
+                     Opacity="0.1" Grid.Column="1" Grid.RowSpan="2"/>
+
+            <StackPanel Grid.Row="0" 
+                        Grid.RowSpan="2"
+                        Margin="0,30,0,0">
+                
+                <StackPanel Orientation="Horizontal">
+
+                    <Border Grid.Column="0"
+                            Height="28"
+                            Width="120"
+                            Background="White"
+                            Margin="30,0,0,0"
+                            BorderBrush="{StaticResource color2}" 
+                            BorderThickness="2">
+
+                        <TextBox Name="FilterTextBox"
+                                 TextChanged="FilterTextBox_TextChanged"
+                                 Margin="0,0,0,0"
+                                 Foreground="{StaticResource color8}"/>
+
+                    </Border>
+
+
+                    <Border Grid.Column="0"
+                            Height="28"
+                            Background="White"
+                            BorderBrush="{StaticResource color2}" 
+                            BorderThickness="2">
+
+                        <Font:FontAwesome Icon="Search"
+                                      Height="25"
+                                      Width="20"
+                                      FontSize="15"
+                                      Margin="0,1,0,0"
+                                      Foreground="{StaticResource color7}"
+                                      VerticalAlignment="Top"/>
+                    </Border>
+
+                </StackPanel>
+                <ListView Width="150"
+                          Height="300"
+                          Margin="0,20,0,0"
+                          Background="White"
+                          Name="PastPCBuildList"
+                          BorderBrush="{StaticResource color8}"
+                          BorderThickness="3"
+                          ItemsSource="{Binding PCBuild}"
+                          SelectedItem="{Binding SelectedPCBuild}">
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource color14}"/>
+                                    <!-- Set background color for selected item -->
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                    <ListView.View>
+                        <GridView>
+                            <!-- Header Style -->
+                            <GridView.ColumnHeaderContainerStyle>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="Background" Value="{StaticResource color12}"/>
+                                    <Setter Property="Foreground" Value="Purple"/>
+                                    <!-- Set foreground color -->
+                                    <Setter Property="FontSize" Value="14"/>
+                                    <!-- Set font size -->
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <!-- Set font weight -->
+                                </Style>
+                            </GridView.ColumnHeaderContainerStyle>
+
+                            <!-- Columns -->
+                            <GridViewColumn Header="ID"
+                                            Width="150">
+
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding ID}" 
+                                                   TextAlignment="Center"
+                                                   Foreground="{StaticResource color13}" 
+                                                   FontWeight="DemiBold" 
+                                                   FontSize="12"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+
+                </ListView>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Margin="0,50,0,0" Grid.RowSpan="2">
+
+                <TextBlock Text="PC Build Configuration"
+                           HorizontalAlignment="Center"
+                           FontSize="13"
+                           FontWeight="ExtraBold"
+                           Foreground="{StaticResource color13}"/>
+
+                <TextBlock Text="ID"
+                           Margin="50,10,0,0"
+                           FontSize="13"
+                           FontWeight="ExtraBold"
+                           Foreground="{StaticResource color13}"/>
+
+                <TextBox Text="{Binding SelectedPCBuild.ID}"
+                         Margin="60,10,0,0"
+                         IsReadOnly="True"
+                         Width="200"
+                         FontSize="12"
+                         FontWeight="Bold"
+                         Foreground="{StaticResource color13}"                        
+                         BorderBrush="{StaticResource color8}"
+                         BorderThickness="2"
+                         HorizontalAlignment="Left"/>
+                
+                <TextBlock Text="Components"
+                           Margin="50,10,0,0"
+                           FontSize="13"
+                           FontWeight="ExtraBold"
+                           Foreground="{StaticResource color13}"/>
+
+                <ListView Width="300"
+                          Height="130"
+                          Margin="10,10,0,0"
+                          BorderBrush="{StaticResource color8}"
+                          BorderThickness="2"
+                          ItemsSource="{Binding SelectedPCBuild.Components}">
+
+                    <ListView.View>
+
+                        <GridView>
+                            <!-- Header Style -->
+                            <GridView.ColumnHeaderContainerStyle>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="Background" Value="{StaticResource color12}"/>
+                                    <Setter Property="Foreground" Value="Purple"/>
+                                    <!-- Set foreground color -->
+                                    <Setter Property="FontSize" Value="14"/>
+                                    <!-- Set font size -->
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <!-- Set font weight -->
+                                </Style>
+                            </GridView.ColumnHeaderContainerStyle>
+
+                            <GridViewColumn Header="Name"
+                                            Width="150">
+
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding ComponentName}" 
+                                                   TextAlignment="Center"
+                                                   Foreground="{StaticResource color13}" 
+                                                   FontWeight="DemiBold" 
+                                                   FontSize="12"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="Category"
+                                            Width="150">
+
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding ComponentCategory}" 
+                                                   TextAlignment="Center"
+                                                   Foreground="{StaticResource color13}" 
+                                                   FontWeight="DemiBold" 
+                                                   FontSize="12"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+
+                            </GridViewColumn>
+
+
+                        </GridView>
+                    </ListView.View>
+
+                </ListView>
+                <TextBlock Text="Total"
+                           FontSize="13"
+                           FontWeight="ExtraBold"
+                           Margin="50,10,0,0"
+                           Foreground="{StaticResource color13}"/>
+
+                <TextBox Text="{Binding SelectedPCBuild.TotalPrice}"
+                         Margin="60,10,0,0"
+                         IsReadOnly="True"
+                         HorizontalAlignment="Left"
+                         Width="200"
+                         FontSize="12"
+                         FontWeight="Bold"
+                         Foreground="{StaticResource color13}"                        
+                         BorderBrush="{StaticResource color8}"
+                         BorderThickness="2"/>
+
+
+                    <Border Height="30"
+                            Width="70"
+                            Margin="0,20,0,0"
+                            Background="{StaticResource color13}"
+                            CornerRadius="8"
+                            HorizontalAlignment="Center">
+
+                        <Button Height="30"
+                                Width="100"
+                                Background="Transparent"
+                                Content=" Exit "
+                                FontSize="11"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                BorderThickness="0"
+                                CommandParameter="{x:Reference Name= PastPCBuild}"
+                                Command="{Binding CancelCommand}"
+                                HorizontalAlignment="Center" />
+
+                    </Border>
+                
+            </StackPanel>
+
+
+        </Grid>
+    </Border>
+    
+</Window>

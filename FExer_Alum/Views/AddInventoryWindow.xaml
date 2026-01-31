@@ -1,0 +1,239 @@
+﻿<Window x:Class="FINALPROJECT_OOP_ALUM.Views.AddInventoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FINALPROJECT_OOP_ALUM.Views"
+        mc:Ignorable="d"
+        Title="AddInventoryWindow" 
+        Name="AddInventory"
+        Height="330" 
+        Width="550">
+
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0.2"/>
+            <GradientStop Color="{StaticResource secondaryBackColor4}" Offset="0.7"/>
+            <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Border CornerRadius="50">
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel HorizontalAlignment="Center" 
+                        Width="550">
+
+                <Image Source="/Images/Logo.png" 
+                       Height="70"/>
+
+                <TextBlock Text="TechTune PC Solutions"
+                           Foreground="{StaticResource color13}"
+                           FontSize="12"
+                           FontWeight="ExtraBold"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"/>
+                
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+
+                    <TextBlock Text="Name :"
+                               Margin="0,10,0,5"
+                               FontSize="13"
+                               FontWeight="ExtraBold"
+                               Foreground="{StaticResource color8}"/>
+
+                    <TextBox Text="{Binding ComponentName}"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             Foreground="{StaticResource color13}"
+                             BorderBrush="{StaticResource color8}"
+                             BorderThickness="2"
+                             Height="20"
+                             Width="150"
+                             Margin="10,0,50,0"/>
+
+                    <TextBlock Text="ID:"
+                               Margin="55,10,0,5"
+                               FontSize="13"
+                               FontWeight="ExtraBold"
+                               Foreground="{StaticResource color8}"/>
+
+                    <TextBox Text="{Binding ComponentID}"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             Foreground="{StaticResource color13}"
+                             BorderBrush="{StaticResource color8}"
+                             BorderThickness="2"
+                             Height="20"
+                             Width="150"
+                             Margin="10,0,0,0"/>
+                    
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBlock Text="Brand : "
+                               Margin="30,10,0,5"
+                               FontSize="13"
+                               FontWeight="ExtraBold"
+                               Foreground="{StaticResource color8}"/>
+
+                    <TextBox Text="{Binding ComponentBrand}"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             Foreground="{StaticResource color13}"                        
+                             BorderBrush="{StaticResource color8}"
+                             BorderThickness="2"
+                             Height="20"
+                             Width="150"
+                             IsReadOnly="False"
+                             Margin="5,0,86,0"/>
+
+                    <TextBlock Text="Model: "
+                               Margin="0,10,0,5"
+                               FontSize="13"
+                               FontWeight="ExtraBold"
+                               Foreground="{StaticResource color8}"/>
+
+                    <TextBox Text="{Binding ComponentModel}"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             Foreground="{StaticResource color13}"                        
+                             BorderBrush="{StaticResource color8}"
+                             BorderThickness="2"
+                             Height="20"
+                             Width="150"
+                             IsReadOnly="False"
+                             Margin="1,0,50,0"/>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBlock Text="Price : "
+                               Margin="32,10,0,5"
+                               FontSize="13"
+                               FontWeight="ExtraBold"
+                               Foreground="{StaticResource color8}"/>
+
+                    <TextBox Text="{Binding ComponentPrice}"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             Foreground="{StaticResource color13}"                        
+                             BorderBrush="{StaticResource color8}"
+                             BorderThickness="2"
+                             Height="20"
+                             Width="150"
+                             IsReadOnly="False"
+                             Margin="8,0,72,0"/>
+
+                    <TextBlock Text="Quantity: "
+                               Margin="0,10,0,5"
+                               FontSize="13"
+                               FontWeight="ExtraBold"
+                               Foreground="{StaticResource color8}"/>
+
+                    <TextBox Text="{Binding ComponentQuantity}"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             Foreground="{StaticResource color13}"                        
+                             BorderBrush="{StaticResource color8}"
+                             BorderThickness="2"
+                             Height="20"
+                             Width="150"
+                             IsReadOnly="False"
+                             Margin="2,0,50,0"/>
+
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+
+                    <TextBlock Text="Category: "
+                               Margin="0,10,0,5"
+                               FontSize="13"
+                               FontWeight="ExtraBold"
+                               Foreground="{StaticResource color8}"/>
+
+                    <ComboBox HorizontalAlignment="Center"
+                              Width="150"
+                              Margin="0,10,0,0"
+                              ItemsSource="{Binding ECategory}"
+                              SelectedItem="{Binding ComponentCategory}">
+
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+
+                    </ComboBox>
+                    
+                </StackPanel>
+
+
+
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        Margin="200,0,0,0"
+                        VerticalAlignment="Top">
+
+                <Border Height="30"
+                        Width="70"
+                        Margin="0,10,20,0"
+                        Background="{StaticResource color13}"
+                        CornerRadius="8"
+                        HorizontalAlignment="Center">
+
+                    <Button Height="30"
+                            Width="100"
+                            Background="Transparent"
+                            Content="Save"
+                            FontSize="11"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Command="{Binding AddComponentCommand}"  
+                            CommandParameter="{x:Reference Name=AddInventory}"
+                            HorizontalAlignment="Center" />
+
+                </Border>
+
+                <Border Height="30"
+                        Width="70"
+                        Margin="0,10,0,0"
+                        Background="{StaticResource color13}"
+                        CornerRadius="8"
+                        HorizontalAlignment="Center">
+
+                    <Button Height="30"
+                                Width="100"
+                                Background="Transparent"
+                                Content=" Cancel "
+                                FontSize="11"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                BorderThickness="0"
+                                CommandParameter="{x:Reference Name=AddInventory}"
+                                Command="{Binding CancelCommand}" 
+                                HorizontalAlignment="Center" />
+
+                </Border>
+
+            </StackPanel>
+
+        </Grid>
+
+    </Border>
+    
+</Window>

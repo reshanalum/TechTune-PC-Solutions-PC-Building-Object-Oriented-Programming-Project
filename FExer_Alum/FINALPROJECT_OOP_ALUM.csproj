@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\3_lines.png" />
+    <None Remove="Images\CustomerPage.png" />
+    <None Remove="Images\Logo.png" />
+    <None Remove="Images\ProductPage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="35.5.1" />
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="Haley.WPF" Version="5.4.3.1" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\3_lines.png" />
+    <Resource Include="Images\CustomerPage.png" />
+    <Resource Include="Images\Logo.png" />
+    <Resource Include="Images\ProductPage.png" />
+  </ItemGroup>
+
+</Project>
